@@ -1,4 +1,4 @@
-package sample;
+package sample.Figures;
 
 public class Circle extends Shape {
 
@@ -11,5 +11,9 @@ public class Circle extends Shape {
 
     public int getRadius(){
         return radius;
+    }
+
+    public void setRadius(int r){
+        radius = r;
     }
 }

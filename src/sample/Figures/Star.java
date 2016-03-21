@@ -1,6 +1,6 @@
-package sample;
+package sample.Figures;
 
-public class Star extends Shape{
+public class Star extends Shape {
     private int radius;
 
     public Star(int x, int y, int r){

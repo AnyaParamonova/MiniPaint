@@ -6,6 +6,8 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.stage.Stage;
+import sample.Drawers.*;
+import sample.Figures.*;
 
 import java.util.ArrayList;
 
@@ -33,21 +35,33 @@ public class Main extends Application {
     }
 
     private void drawShapes(GraphicsContext graphicsContext){
-        Painter painter = new Painter(graphicsContext, Circle.class, Rectangle.class, Hexagon.class, Star.class, Heart.class, Pika.class);
-        ArrayList<Shape> list = createList();
-        list.forEach(painter::draw);
+        Drawer drawer;
+        Shape shape;
 
-    }
+        shape = new Circle(100,100,60);
+        drawer = new CircleDrawer();
+        drawer.draw(graphicsContext, shape);
 
-    private ArrayList<Shape> createList(){
-        ArrayList<Shape> list = new ArrayList();
-        list.add(new Circle(100,100,60));
-        list.add(new Rectangle(400,600,100,150));
-        list.add(new Hexagon(100,100,60));
-        list.add(new Star(200, 200, 100));
-        list.add(new Heart(200, 400, 50));
-        list.add(new Pika(400, 200, 80));
-        return list;
+        shape = new Rectangle(400,600,100,150);
+        drawer = new RectangleDrawer();
+        drawer.draw(graphicsContext, shape);
+
+        shape = new Hexagon(100,100,60);
+        drawer = new HexagonDrawer();
+        drawer.draw(graphicsContext, shape);
+
+        shape = new Star(200, 200, 100);
+        drawer = new StarDrawer();
+        drawer.draw(graphicsContext, shape);
+
+        shape = new Heart(200, 400, 50);
+        drawer = new HeartDrawer();
+        drawer.draw(graphicsContext, shape);
+
+        shape = new Pika(400, 200, 80);
+        drawer = new PikaDrawer();
+        drawer.draw(graphicsContext, shape);
+
     }
 
 }

@@ -1,6 +1,6 @@
-package sample;
+package sample.Figures;
 
-public class Pika extends Shape{
+public class Pika extends Shape {
     private int radius;
 
     public Pika(int x, int y, int r){
@@ -10,5 +10,9 @@ public class Pika extends Shape{
 
     public int getRadius(){
         return radius;
+    }
+
+    public void setRadius(int r){
+        radius = r;
     }
 }
