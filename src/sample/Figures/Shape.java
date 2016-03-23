@@ -4,10 +4,6 @@ public class Shape {
 
     private Point center;
 
-    public Shape(int x, int y){
-        center = new Point(x, y);
-    }
-
     public Point getCenter(){
         return center;
     }
