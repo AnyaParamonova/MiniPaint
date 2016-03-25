@@ -12,9 +12,8 @@ public class Artist {
     private DrawingFigure drawingFigure;
     private ArrayList<DrawingFigure> figureList;
 
-    public Artist(Canvas c){
+    public Artist(){
         figureList = new ArrayList<>();
-        canvas = c;
     }
 
     public void setCanvas(Canvas c){
@@ -30,17 +29,25 @@ public class Artist {
         drawingFigure.drawFigure(canvas.getGraphicsContext2D());
     }
 
-    public void resizeFigure(Shape sh){
+    public void changeFigure(Shape sh){
         drawingFigure.setShape(sh);
     }
+
     public void addFigure(){
         figureList.add(drawingFigure);
         repaintAddedFigures();
     }
 
+    private void clearCanvas(){
+        GraphicsContext graphicsContext = canvas.getGraphicsContext2D();
+        graphicsContext.clearRect(0,0,canvas.getWidth(),canvas.getHeight() );
+    }
+
     private void repaintAddedFigures(){
+        clearCanvas();
+        GraphicsContext graphicsContext = canvas.getGraphicsContext2D();
         for(DrawingFigure figure : figureList){
-            figure.drawFigure(canvas.getGraphicsContext2D());
+            figure.drawFigure(graphicsContext);
         }
     }
 
@@ -58,10 +65,6 @@ public class Artist {
         }
         public Shape getShape(){
             return shape;
-        }
-
-        public Drawer getDrawer(){
-            return drawer;
         }
 
         public void drawFigure(GraphicsContext graphicsContext){

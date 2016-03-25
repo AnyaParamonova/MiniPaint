@@ -10,16 +10,17 @@ public class PikaDrawer extends Drawer<Pika> {
 
     @Override
     public void draw(GraphicsContext graphicsContext, Pika pika) {
-        Point center = pika.getCenter();
-        int radius = pika.getRadius();
+        Point leftUpConer = pika.getLeftUpCorner();
+        int x = leftUpConer.getX(), y = leftUpConer.getY();
+        int widthRadius = pika.getWidthRadius(), heightRadius = pika.getHeightRadius();
 
-        graphicsContext.strokeArc(center.getX()+radius/2, center.getY()-radius/2, radius, radius, 180, 90, ArcType.OPEN);
-        graphicsContext.strokeArc(center.getX()-radius/2, center.getY()-radius/2, radius, radius, 270, 90, ArcType.OPEN);
-        graphicsContext.strokeArc(center.getX()+radius/2, center.getY()+radius/2, radius, radius, 180, 270, ArcType.OPEN);
-        graphicsContext.strokeArc(center.getX()-radius/2, center.getY()+radius/2, radius, radius, 90, 270, ArcType.OPEN);
+        graphicsContext.strokeArc(x+widthRadius, y, widthRadius, heightRadius, 270, 90, ArcType.OPEN);
+        graphicsContext.strokeArc(x+2*widthRadius, y, widthRadius, heightRadius, 180, 90, ArcType.OPEN);
+        graphicsContext.strokeArc(x+2*widthRadius, y+heightRadius, widthRadius, heightRadius, 180, 270, ArcType.OPEN);
+        graphicsContext.strokeArc(x+widthRadius, y+heightRadius, widthRadius, heightRadius, 90, 270, ArcType.OPEN);
 
-        graphicsContext.strokeArc(center.getX()-radius/2, center.getY()+radius/2, radius, 1.2*radius, 270, 90, ArcType.OPEN);
-        graphicsContext.strokeArc(center.getX()+radius/2, center.getY()+radius/2, radius, 1.2*radius, 180, 90, ArcType.OPEN);
-        graphicsContext.strokeLine(center.getX(), center.getY()+1.7*radius, center.getX()+radius, center.getY()+1.7*radius);
+        graphicsContext.strokeArc(x+widthRadius, y+heightRadius, widthRadius, 1.2*heightRadius, 270, 90, ArcType.OPEN);
+        graphicsContext.strokeArc(x+2*widthRadius, y+heightRadius, widthRadius, 1.2*heightRadius, 180, 90, ArcType.OPEN);
+        graphicsContext.strokeLine(x+1.5*widthRadius, y+2.2*heightRadius, x+2.5*widthRadius, y+2.2*heightRadius);
     }
 }

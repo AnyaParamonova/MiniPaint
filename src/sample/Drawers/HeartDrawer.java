@@ -10,12 +10,14 @@ public class HeartDrawer extends Drawer<Heart> {
 
     @Override
     public void draw(GraphicsContext graphicsContext, Heart heart) {
-        int radius = heart.getRadius();
-        Point center = heart.getCenter();
+        Point leftUpConer = heart.getLeftUpCorner();
+        int x = leftUpConer.getX(), y = leftUpConer.getY();
+        int widthRadius = heart.getWidthRadius(), heightRadius = heart.getHeightRadius();
 
-        graphicsContext.strokeArc(center.getX()+radius/2, center.getY()-radius/2, radius, radius, -90, 270, ArcType.OPEN);
-        graphicsContext.strokeArc(center.getX()-radius/2, center.getY()-radius/2, radius, radius, 0, 270, ArcType.OPEN);
-        graphicsContext.strokeArc(center.getX()+radius/2, center.getY()+radius/2, radius, radius, 90, 90, ArcType.OPEN);
-        graphicsContext.strokeArc(center.getX()-radius/2, center.getY()+radius/2, radius, radius, 0, 90, ArcType.OPEN);
+        graphicsContext.strokeArc(x+2*widthRadius, y, widthRadius, heightRadius, -90, 270, ArcType.OPEN);
+        graphicsContext.strokeArc(x+widthRadius, y, widthRadius, heightRadius, 0, 270, ArcType.OPEN);
+        graphicsContext.strokeArc(x+2*widthRadius, y+heightRadius, widthRadius, heightRadius, 90, 90, ArcType.OPEN);
+        graphicsContext.strokeArc(x+widthRadius, y+heightRadius, widthRadius, heightRadius, 0, 90, ArcType.OPEN);
+
     }
 }

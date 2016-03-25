@@ -8,9 +8,7 @@ public class CircleDrawer extends Drawer<Circle> {
 
     @Override
     public void draw(GraphicsContext graphicsContext, Circle circle) {
-        int radius = circle.getRadius();
-        Point center = circle.getCenter();
-        int left_up_corner_x = center.getX()-radius, left_up_corner_y = center.getY()-radius;
-        graphicsContext.strokeOval(left_up_corner_x, left_up_corner_y, 2*radius, 2*radius);
+        Point leftUpCorner = circle.getLeftUpCorner();
+        graphicsContext.strokeOval(leftUpCorner.getX(), leftUpCorner.getY(), circle.getWidth(), circle.getHeight());
     }
 }
