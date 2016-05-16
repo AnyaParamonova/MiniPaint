@@ -1,8 +1,8 @@
-package sample.Drawers;
+package main.Drawers;
 
 import javafx.scene.canvas.GraphicsContext;
-import sample.Figures.Point;
-import sample.Figures.Star;
+import plugin_api.*;
+import main.Figures.Star;
 
 import static java.lang.Math.cos;
 import static java.lang.StrictMath.sin;

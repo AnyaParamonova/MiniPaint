@@ -1,10 +1,10 @@
-package sample.Drawers;
+package main.Drawers;
 
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.shape.ArcType;
-import sample.Figures.Heart;
-import sample.Figures.Point;
+import main.Figures.Heart;
+import plugin_api.*;
 
 public class HeartDrawer extends Drawer<Heart> {
 

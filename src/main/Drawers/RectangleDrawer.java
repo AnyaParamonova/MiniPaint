@@ -1,8 +1,8 @@
-package sample.Drawers;
+package main.Drawers;
 
 import javafx.scene.canvas.GraphicsContext;
-import sample.Figures.Point;
-import sample.Figures.Rectangle;
+import plugin_api.*;
+import main.Figures.Rectangle;
 
 public class RectangleDrawer extends Drawer<Rectangle>{
     @Override

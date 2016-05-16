@@ -1,4 +1,4 @@
-package sample;
+package main;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -13,9 +13,10 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("interface.fxml"));
         primaryStage.setTitle("Mini Paint");
-        Scene scene = new Scene(root, 600, 600);
+        Scene scene = new Scene(root, 700, 600);
         primaryStage.setScene(scene);
 
+        primaryStage.setResizable(false);
         primaryStage.show();
     }
 

@@ -1,9 +1,9 @@
-package sample.Drawers;
+package main.Drawers;
 
 
 import javafx.scene.canvas.GraphicsContext;
-import sample.Figures.Hexagon;
-import sample.Figures.Point;
+import main.Figures.Hexagon;
+import plugin_api.*;
 
 import static java.lang.Math.cos;
 import static java.lang.StrictMath.sin;

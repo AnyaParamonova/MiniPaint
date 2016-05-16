@@ -1,22 +1,37 @@
-package sample;
+package main;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
-import sample.Drawers.*;
-import sample.Figures.*;
+import javafx.scene.layout.FlowPane;
+import main.Drawers.*;
+import main.Figures.*;
+import main.Plugins.PluginLoader;
+import plugin_api.*;
+import java.util.ArrayList;
 
 public class Controller {
-    Shape currentShape = null;
+    private Artist artist = new Artist();
+    private Shape currentShape = null;
+    private ArrayList<Plugin> plugins;
+
     @FXML
     private Canvas canvas;
-    Artist artist = new Artist();
+    @FXML
+    private FlowPane panel;
 
-    public void onPikaButtonAction(ActionEvent actionEvent) {
-        Drawer drawer = new PikaDrawer();
-        currentShape = new Pika();
-        artist.setCurrentFigure(currentShape, drawer);
+    @FXML
+    public void initialize(){
+        plugins = PluginLoader.getPlugins();
+        for (Plugin plugin: plugins) {
+            Button button = plugin.getButton();
+            panel.getChildren().add(button);
+            panel.setMargin(button, new Insets(0, 0, 10, 0));
+            plugin.setArtist(artist);
+        }
     }
 
     public void onCircleButtonAction(ActionEvent actionEvent) {
@@ -50,6 +65,9 @@ public class Controller {
     }
 
     public void canvasOnMousePressed(MouseEvent event) {
+        for (Plugin plugin: plugins) {
+            if(currentShape == null) currentShape = plugin.getCurrentShape();
+        }
         if(currentShape !=null){
             artist.setCanvas(canvas);
             Point leftUpCorner = new Point((int)event.getX(),(int)event.getY());
@@ -58,6 +76,7 @@ public class Controller {
         }
 
     }
+
     public void canvasOnMouseDragged(MouseEvent event) {
         if(currentShape !=null){
             Point rightDownCorner = new Point((int)event.getX(), (int)event.getY());
@@ -73,8 +92,5 @@ public class Controller {
             artist.addFigure();
             currentShape = null;
         }
-
     }
-
-
 }

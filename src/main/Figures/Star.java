@@ -1,4 +1,6 @@
-package sample.Figures;
+package main.Figures;
+
+import plugin_api.*;
 
 public class Star extends Shape {
 

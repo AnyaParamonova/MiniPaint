@@ -1,6 +1,8 @@
-package sample.Figures;
+package main.Figures;
 
-public class Pika extends Shape {
+import plugin_api.*;
+
+public class Heart extends Shape {
     public int getWidthRadius(){
         return getWidth()/4;
     }

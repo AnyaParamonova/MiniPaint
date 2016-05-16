@@ -1,8 +1,10 @@
-package sample.Figures;
+package main.Figures;
 
-public class Heart extends Shape {
+import plugin_api.*;
+
+public class Hexagon extends Shape {
     public int getWidthRadius(){
-        return getWidth()/4;
+        return getWidth()/2;
     }
 
     public  int getHeightRadius(){

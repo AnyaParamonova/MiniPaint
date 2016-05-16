@@ -1,8 +1,8 @@
-package sample.Drawers;
+package main.Drawers;
 
 import javafx.scene.canvas.GraphicsContext;
-import sample.Figures.Circle;
-import sample.Figures.Point;
+import main.Figures.Circle;
+import plugin_api.*;
 
 public class CircleDrawer extends Drawer<Circle> {
 
