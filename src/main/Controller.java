@@ -1,16 +1,24 @@
 package main;
 
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.WritableImage;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
+import javafx.stage.FileChooser;
+import javafx.scene.paint.Color;
 import main.Drawers.*;
 import main.Figures.*;
 import main.Plugins.PluginLoader;
 import plugin_api.*;
+import javax.imageio.ImageIO;
+import java.awt.image.RenderedImage;
+import java.io.*;
 import java.util.ArrayList;
 
 public class Controller {
@@ -27,6 +35,8 @@ public class Controller {
     public void initialize(){
         plugins = PluginLoader.getPlugins();
         for (Plugin plugin: plugins) {
+            canvas.getGraphicsContext2D().setFill(Color.WHITE);
+            canvas.getGraphicsContext2D().fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
             Button button = plugin.getButton();
             panel.getChildren().add(button);
             panel.setMargin(button, new Insets(0, 0, 10, 0));
@@ -92,5 +102,51 @@ public class Controller {
             artist.addFigure();
             currentShape = null;
         }
+    }
+
+    public void onSaveItemAction(ActionEvent actionEvent) {
+        FileChooser fileChooser = new FileChooser();
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("png files (*.png)", "*.png");
+        fileChooser.getExtensionFilters().add(extFilter);
+
+        File file = fileChooser.showSaveDialog(Main.getStage());
+
+        if(file != null){
+            try {
+                WritableImage writableImage = new WritableImage((int)canvas.getWidth(), (int)canvas.getHeight());
+                canvas.snapshot(null, writableImage);
+                RenderedImage renderedImage = SwingFXUtils.fromFXImage(writableImage, null);
+                ImageIO.write(renderedImage, "png", file);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
+    }
+
+    public void onLoadItemAction(ActionEvent actionEvent) {
+        FileChooser fileChooser = new FileChooser();
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("png files (*.png)", "*.png");
+        fileChooser.getExtensionFilters().add(extFilter);
+
+        File file = fileChooser.showOpenDialog(Main.getStage());
+
+        if(file != null){
+            try{
+                Image image = new Image(new FileInputStream(file));
+                canvas.getGraphicsContext2D().drawImage(image, 0, 0);
+                artist.setImage(image);
+                artist.clearList();
+            } catch (Exception e){
+                System.out.println(e.getMessage());
+            }
+        }
+
+    }
+
+    public void onClearItemAction(ActionEvent actionEvent) {
+        artist.setImage(null);
+        artist.clearList();
+        canvas.getGraphicsContext2D().fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
     }
 }

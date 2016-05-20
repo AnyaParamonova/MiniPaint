@@ -9,8 +9,11 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
+    private static Stage stage;
+
     @Override
     public void start(Stage primaryStage) throws Exception{
+        this.stage = primaryStage;
         Parent root = FXMLLoader.load(getClass().getResource("interface.fxml"));
         primaryStage.setTitle("Mini Paint");
         Scene scene = new Scene(root, 700, 600);
@@ -25,5 +28,8 @@ public class Main extends Application {
         launch(args);
     }
 
+    public static Stage getStage(){
+        return stage;
+    }
 
 }

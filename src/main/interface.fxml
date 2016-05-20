@@ -84,9 +84,15 @@
         <menus>
           <Menu mnemonicParsing="false" text="Picture">
             <items>
-              <MenuItem mnemonicParsing="false" text="Save as..." />
+              <MenuItem fx:id="saveItem" mnemonicParsing="false" onAction="#onSaveItemAction" text="Save as..." />
+                  <MenuItem fx:id="loadItem" mnemonicParsing="false" onAction="#onLoadItemAction" text="Load picture" />
             </items>
           </Menu>
+            <Menu mnemonicParsing="false" text="Actions">
+              <items>
+                <MenuItem fx:id="clearItem" mnemonicParsing="false" onAction="#onClearItemAction" text="Clear    " />
+              </items>
+            </Menu>
         </menus>
       </MenuBar>
    </children>
